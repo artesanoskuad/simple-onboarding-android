@@ -21,7 +21,7 @@ class LocalOnboardingRepository : OnboardingRepository, KoinComponent {
 
     private val preferences: SharedPreferences
     private var dispacher: CoroutineDispatcher = Dispatchers.IO
-    private val onboardingInfoStep : OnboardingInfoStep by inject()
+    private val onboardingInfoStep: OnboardingInfoStep by inject()
 
     constructor(context: Context) {
         preferences = context.getSharedPreferences(
@@ -38,7 +38,7 @@ class LocalOnboardingRepository : OnboardingRepository, KoinComponent {
 
     override fun inSeenCheck(): Boolean {
         return preferences.getBoolean(VISTO_CHECK, true).apply {
-            if(this) {
+            if (this) {
                 preferences.edit().putBoolean(VISTO_CHECK, false).apply()
             }
         }
@@ -51,5 +51,4 @@ class LocalOnboardingRepository : OnboardingRepository, KoinComponent {
             )
         }.flowOn(dispacher)
     }
-
 }

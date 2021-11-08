@@ -7,16 +7,16 @@ import com.artesanoskuad.onboarding.extensions.withDefaultAnimations
 
 class OnboardingUiNavigator : OnboardingNavigator {
 
-    //
     lateinit var onboardingFragment: OnboardingFragment
 
-    override fun init(onboardingFragment: OnboardingFragment){
+    override fun init(onboardingFragment: OnboardingFragment) {
         this.onboardingFragment = onboardingFragment
     }
 
     override fun goToHome() {
         val HOME_SCREEN_URI = "blueprint://home".toUri()
-        findNavController(onboardingFragment).navigate(HOME_SCREEN_URI,
+        findNavController(onboardingFragment).navigate(
+            HOME_SCREEN_URI,
             navOptions { withDefaultAnimations() }
         )
     }

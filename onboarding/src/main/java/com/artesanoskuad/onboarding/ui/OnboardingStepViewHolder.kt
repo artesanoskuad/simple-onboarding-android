@@ -8,12 +8,11 @@ class OnboardingStepViewHolder(
     private val onboardingBinding: ItemOnboardingBinding
 ) : RecyclerView.ViewHolder(onboardingBinding.root) {
 
-    fun bind(onboardingStep: OnboardingStep){
-        with(onboardingBinding){
+    fun bind(onboardingStep: OnboardingStep) {
+        with(onboardingBinding) {
             ivStepOnboarding.setImageResource(onboardingStep.defaultRes)
             tvStepTitle.text = onboardingStep.title
             tvStepSubtitle.text = onboardingStep.description
         }
     }
-
 }

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.artesanoskuad.onboarding.databinding.ItemOnboardingBinding
 import com.artesanoskuad.onboarding.domain.OnboardingStep
-import com.artesanoskuad.onboarding.ui.OnboardingStepViewHolder
 
 class OnboardingStepPagerAdapter : RecyclerView.Adapter<OnboardingStepViewHolder>() {
 
@@ -30,5 +29,4 @@ class OnboardingStepPagerAdapter : RecyclerView.Adapter<OnboardingStepViewHolder
     }
 
     override fun getItemCount() = onboardingSteps.size
-
 }

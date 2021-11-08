@@ -1,18 +1,17 @@
 package com.artesanoskuad.onboarding.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-import androidx.viewpager2.widget.ViewPager2
 import com.artesanoskuad.onboarding.R
 import com.artesanoskuad.onboarding.databinding.FragmentOnboardingBinding
 import com.artesanoskuad.onboarding.domain.OnboardingInfo
+import com.artesanoskuad.onboarding.extensions.withDefaultAnimations
 import com.artesanoskuad.onboarding.presentation.OnboardingViewModel
 import com.artesanoskuad.onboarding.presentation.OnboardingViewState
-import com.artesanoskuad.onboarding.extensions.withDefaultAnimations
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -43,9 +42,9 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding), KoinComponent
     }
 
     private fun goToHomeFragment() {
-        //TODO Centralizar las URIS en un módulo presentación core
         val HOME_SCREEN_URI = "tbkapp://home".toUri()
-        findNavController().navigate(HOME_SCREEN_URI,
+        findNavController().navigate(
+            HOME_SCREEN_URI,
             navOptions { withDefaultAnimations() }
         )
     }
@@ -69,7 +68,11 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding), KoinComponent
         with(binding) {
             imageViewIcon.setImageResource(onboardingInfo.icon)
             tvSkip.text = onboardingInfo.skipMessage
-            setupSkipButton(onboardingInfo.skipMessage, onboardingInfo.finalSkipMessage, onboardingInfo.steps.size)
+            setupSkipButton(
+                onboardingInfo.skipMessage,
+                onboardingInfo.finalSkipMessage,
+                onboardingInfo.steps.size
+            )
         }
         onboardingStepPagerAdapter.setValues(onboardingInfo.steps)
     }
@@ -81,5 +84,4 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding), KoinComponent
             )
         }
     }
-
 }

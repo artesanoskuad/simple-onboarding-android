@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-
 class OnboardingViewModel : ViewModel(), KoinComponent {
 
     private val obtainOnboardingStepsUseCase: ObtainOnboardingStepsUseCase by inject()
@@ -27,7 +26,7 @@ class OnboardingViewModel : ViewModel(), KoinComponent {
     }
 
     private suspend fun obtainOnboardingList() {
-        obtainOnboardingStepsUseCase.execute().collect {onboardingInfo ->
+        obtainOnboardingStepsUseCase.execute().collect { onboardingInfo ->
             onboardingShowOnboardingViewState(onboardingInfo)
         }
     }
@@ -35,5 +34,4 @@ class OnboardingViewModel : ViewModel(), KoinComponent {
     private fun onboardingShowOnboardingViewState(onboardingInfo: OnboardingInfo) {
         onboardingViewState.value = ShowOnboardingViewState(onboardingInfo)
     }
-
 }

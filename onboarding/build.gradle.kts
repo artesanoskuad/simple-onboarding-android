@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -23,7 +24,6 @@ android {
         getByName("debug") {
             isTestCoverageEnabled = true
         }
-
     }
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_11)
@@ -54,7 +54,6 @@ dependencies {
     implementation(AndroidLibraries.navigationUi)
     implementation("com.tbuonomo:dotsindicator:4.2")
 
-
     implementation(KoinLibraries.koinCore)
     implementation(KoinLibraries.koinAndroid)
     androidTestImplementation(KoinLibraries.koinTest)
@@ -80,5 +79,9 @@ dependencies {
     androidTestImplementation(TestAndroidLibraries.espressoAccessibility)
     androidTestImplementation(TestAndroidLibraries.espressoIdlingConcurrent)
     androidTestImplementation(TestAndroidLibraries.mockitoKotlinNhaarman)
+}
 
+ktlint {
+    verbose.set(true)
+    outputToConsole.set(true)
 }

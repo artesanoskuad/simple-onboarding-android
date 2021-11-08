@@ -12,8 +12,8 @@ class OnboardingOnPageChangeCallback(
 
     override fun onPageSelected(position: Int) {
         super.onPageSelected(position)
-        val maxPositionSupport = stepsNumber-1
-        if(position == maxPositionSupport){
+        val maxPositionSupport = stepsNumber - 1
+        if (position == maxPositionSupport) {
             textView.text = skipFinalMessage
         } else {
             textView.text = skipMessage

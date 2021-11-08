@@ -9,9 +9,7 @@ import android.widget.Button
 import androidx.navigation.NavOptionsBuilder
 import com.artesanoskuad.onboarding.R
 
-
 fun ViewGroup.inflate(layoutResId: Int, attachRoot: Boolean): View {
-
     val inflater = LayoutInflater.from(context)
     return inflater.inflate(layoutResId, this, attachRoot)
 }
@@ -19,12 +17,12 @@ fun ViewGroup.inflate(layoutResId: Int, attachRoot: Boolean): View {
 fun View.hideKeyboard(onFocused: (() -> Unit)? = null) {
     val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-    if(this is Button){
-        setOnClickListener{view ->
+    if (this is Button) {
+        setOnClickListener { view ->
             imm.hideSoftInputFromWindow(view.windowToken, 0)
             onFocused?.invoke()
         }
-    }else{
+    } else {
         setOnFocusChangeListener { view, focused ->
             if (focused) {
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
