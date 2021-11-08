@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("org.jlleitschuh.gradle.ktlint")
+    id("maven-publish")
 }
 
 android {
@@ -23,6 +24,15 @@ android {
         }
         getByName("debug") {
             isTestCoverageEnabled = true
+        }
+
+        android.libraryVariants.all {
+            val libraryVariant = this
+            libraryVariant.outputs
+                .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+                .forEach { output ->
+                    output.outputFileName = "android-simple-onboarding-$version.aar"
+                }
         }
     }
     compileOptions {
@@ -84,4 +94,32 @@ dependencies {
 ktlint {
     verbose.set(true)
     outputToConsole.set(true)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            register("release", MavenPublication::class) {
+                from(components.getByName("release"))
+                groupId = "com.artesanoskuad.android"
+                artifactId = "onboarding"
+                version = findProperty("version") as String
+
+                pom {
+                    name.set("onboarding")
+                    description.set("Biblioteca que permite el uso de un Onboarding de forma Simple")
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR") ?: "${findProperty("githubUser")}"
+                    password = System.getenv("ANDROID_KEY") ?: "${findProperty("githubKey")}"
+                }
+                url = uri("https://maven.pkg.github.com/artesanoskuad/simple-onboarding-android")
+            }
+        }
+    }
 }
