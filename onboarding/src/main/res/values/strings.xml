@@ -1,0 +1,5 @@
+<resources>
+    <string name="onboarding_step_view">Esto es un una instrucción de Onboarding</string>
+    <string name="icono_onboarding">Icono de Onboarding</string>
+    <string name="skip">OMITIR</string>
+</resources>
